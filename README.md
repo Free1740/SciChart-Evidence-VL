@@ -1,5 +1,7 @@
 # SciChart-Evidence-VL
 
+[![CI](https://github.com/Free1740/SciChart-Evidence-VL/actions/workflows/ci.yml/badge.svg)](https://github.com/Free1740/SciChart-Evidence-VL/actions/workflows/ci.yml)
+
 面向科研图表理解的视觉证据驱动多模态大模型框架，基于 **Qwen2.5-VL**。
 
 ## 背景与问题
@@ -100,4 +102,4 @@ python scripts/evaluate.py --config configs/eval.yaml
 
 ## 许可
 
-本项目代码以 MIT License 发布（见 `LICENSE`，如需添加请自行补全）。
+本项目代码以 MIT License 发布（见 `LICENSE`）。
