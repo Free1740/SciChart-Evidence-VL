@@ -1,0 +1,10 @@
+.git
+__pycache__
+.pytest_cache
+*.pyc
+*.pyo
+.venv
+venv
+data/*.jsonl
+data/*.json
+*.egg-info
