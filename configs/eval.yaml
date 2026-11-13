@@ -1,0 +1,31 @@
+# 8 项公开基准评测配置
+model:
+  name: "Qwen/Qwen2.5-VL-7B-Instruct"
+  checkpoint: "outputs/grpo_stage2"
+  torch_dtype: "bfloat16"
+  max_image_tokens: 1024
+
+generation:
+  temperature: 0.0
+  max_new_tokens: 512
+
+benchmarks:
+  # 图表理解基准
+  - ChartQA
+  - PlotQA
+  - ChartBench
+  - CharXiv
+  - FigureQA
+  - DVQA
+  - ChartX
+  # 通用视觉推理基准
+  - MathVista
+
+# 报告的基线（Qwen2.5-VL）与本方法平均分，供汇总时对照
+reference:
+  baseline_average: 44.3
+  reported_average: 52.1
+
+output:
+  report_path: "outputs/eval/report.json"
+  per_benchmark_dir: "outputs/eval"

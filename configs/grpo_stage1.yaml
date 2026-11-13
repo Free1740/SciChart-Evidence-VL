@@ -1,0 +1,23 @@
+# GRPO 阶段一：KL 一致性 + 反事实分离
+# 目标：抑制语言先验与表面线索依赖
+_base: "base.yaml"
+
+stage: 1
+training:
+  output_dir: "outputs/grpo_stage1"
+  num_epochs: 1
+
+grpo:
+  group_size: 8
+  beta_kl: 0.04
+  clip_epsilon: 0.2
+
+loss:
+  # 原图 vs EP 图预测一致性（KL）
+  kl_consistency_weight: 1.0
+  # 原图 vs EA 图预测分布分离
+  counterfactual_separation_weight: 1.0
+  # 证据持久性奖励在阶段一关闭
+  evidence_persistence_weight: 0.0
+  # 答案正确性奖励
+  correctness_weight: 1.0

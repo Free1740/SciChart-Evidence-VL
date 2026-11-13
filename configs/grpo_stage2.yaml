@@ -1,0 +1,30 @@
+# GRPO 阶段二：Evidence Token Mask + Evidence Persistence Reward
+# 目标：减少长链推理中的视觉证据遗忘
+_base: "base.yaml"
+
+stage: 2
+training:
+  output_dir: "outputs/grpo_stage2"
+  num_epochs: 1
+  # 从阶段一 checkpoint 继续训练
+  init_from: "outputs/grpo_stage1"
+
+grpo:
+  group_size: 8
+  beta_kl: 0.04
+  clip_epsilon: 0.2
+
+evidence:
+  # 关键区域 attention 轨迹采样步数
+  trajectory_steps: 8
+  # 证据 token 的 attention 质量阈值
+  attention_threshold: 0.1
+  # 遗忘惩罚：后期推理步证据 attention 下降的惩罚系数
+  forgetting_penalty: 0.5
+
+loss:
+  kl_consistency_weight: 0.5
+  counterfactual_separation_weight: 0.5
+  # 阶段二开启证据持久性奖励
+  evidence_persistence_weight: 1.0
+  correctness_weight: 1.0

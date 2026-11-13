@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Data — never commit real data
+data/*
+!data/README.md
+!data/examples/
+*.jsonl
+*.parquet
+*.arrow
+
+# Model checkpoints and outputs
+checkpoints/
+outputs/
+runs/
+wandb/
+*.ckpt
+*.safetensors
+*.bin
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
