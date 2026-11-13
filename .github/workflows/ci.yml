@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Compile all Python files
+        run: find . -name "*.py" -not -path "./.git/*" -exec python -m py_compile {} +
+
+      - name: Run unit tests (no torch required)
+        run: pytest tests/test_rewards.py tests/test_counterfactual.py -v
+
+      - name: Build demo counterfactual pair
+        run: python scripts/build_counterfactual.py --demo --output /tmp/counterfactual_pairs.jsonl
